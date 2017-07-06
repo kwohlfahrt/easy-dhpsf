@@ -38,7 +38,7 @@ function [templateFrames, ROI, dataFile, dataPath, darkFile, logFile,...
 
 dlg_title = 'Set EM Gain';
 prompt = {  'EM Gain (1 if no gain):' };
-def = {'300'};
+def = {'250'};
 
 num_lines = 1;
 inputdialog = inputdlg(prompt,dlg_title,num_lines,def);

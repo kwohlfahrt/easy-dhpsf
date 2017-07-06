@@ -84,11 +84,11 @@ s.templateLocs = zeros(6,5);
 % region of interest inside raw TIF to process
 s.smacmRawROI = [0 0 0 0];
 % EM gain setting used when acquiring SMACM data
-s.smacmEMGain = 300;
+s.smacmEMGain = 250;
 % photons/count, camera setting, global to all modules
-s.conversionGain = 26.93; %8A % 24.7; % 8B
+s.conversionGain = 35.5; %8A % 24.7; % 8B
 % imaging system property, global to all modules
-s.nmPerPixel = 125.78; % 8A% 160; %8B
+s.nmPerPixel = 260; % 8A% 160; %8B
 % channel identifier
 s.channel = '0';
 % [minWidth maxWidth] of the two spots of the DHPSF, units of pixels
@@ -314,7 +314,7 @@ set(hfig,'Visible','on');
         s.templateSelIdx = 1;
         s.smacmRawROI = [0 0 0 0];
         s.channel = '0';
-        s.smacmEMGain = 300;
+        s.smacmEMGain = 250;
         r = s;
         g = s;
         updateGUI;
