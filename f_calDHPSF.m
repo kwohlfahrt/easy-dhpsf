@@ -859,10 +859,12 @@ for n = 1:numFiles
         end
         h1 = figure('Position',[(scrsz(3)-1280)/2 (scrsz(4)-720)/2 1280 720],'color','w');
         subplot(2,3,1:2);
-        errorbar(z(goodFit_forward),meanAngles(n,bead,goodFit_forward),stddevAngles(n,bead,goodFit_forward),'-');
+        errorbar(z(goodFit_forward),squeeze(meanAngles(n,bead,goodFit_forward)),...
+            squeeze(stddevAngles(n,bead,goodFit_forward)),'-');
         if logical(sum(goodFit_backward))
             hold on
-            errorbar(z(goodFit_backward),meanAngles(n,bead,goodFit_backward),stddevAngles(n,bead,goodFit_backward),':');
+            errorbar(z(goodFit_backward),squeeze(meanAngles(n,bead,goodFit_backward)),...
+                squeeze(stddevAngles(n,bead,goodFit_backward)),':');
             hold off
         end
         axis tight;
@@ -872,12 +874,12 @@ for n = 1:numFiles
         ylabel('Angle (deg)');
 
         subplot(2,3,3);
-        plot(z(goodFit_forward),squeeze(squeeze(meanX(n,bead,goodFit_forward))),'b');
+        plot(z(goodFit_forward),squeeze(meanX(n,bead,goodFit_forward)),'b');
         hold on;
-        plot(z(goodFit_forward),squeeze(squeeze(meanY(n,bead,goodFit_forward))),'r');
+        plot(z(goodFit_forward),squeeze(meanY(n,bead,goodFit_forward)),'r');
         if logical(sum(goodFit_backward))
-            plot(z(goodFit_backward),squeeze(squeeze(meanX(n,bead,goodFit_backward))),':b');
-            plot(z(goodFit_backward),squeeze(squeeze(meanY(n,bead,goodFit_backward))),':r');
+            plot(z(goodFit_backward),squeeze(meanX(n,bead,goodFit_backward)),':b');
+            plot(z(goodFit_backward),squeeze(meanY(n,bead,goodFit_backward)),':r');
         end
         axis tight;
         %     legend('x forward','x backward','y forward','y backward');
@@ -913,10 +915,12 @@ for n = 1:numFiles
         ylabel('z localization precision (nm)');
 
         subplot(2,3,6);
-        errorbar(z(goodFit_forward),meanPhotons(n,bead,goodFit_forward),stddevPhotons(n,bead,goodFit_forward),'b');
+        errorbar(z(goodFit_forward),squeeze(meanPhotons(n,bead,goodFit_forward)),...
+            squeeze(stddevPhotons(n,bead,goodFit_forward)),'b');
         if logical(sum(goodFit_backward))
             hold on
-            errorbar(z(goodFit_backward),meanPhotons(n,bead,goodFit_backward),stddevPhotons(n,bead,goodFit_backward),':b');
+            errorbar(z(goodFit_backward),squeeze(meanPhotons(n,bead,goodFit_backward)),...
+                squeeze(stddevPhotons(n,bead,goodFit_backward)),':b');
             hold off
         end
         axis tight;
@@ -930,9 +934,9 @@ for n = 1:numFiles
 
         h2=figure('Position',[(scrsz(3)-1280)/2 (scrsz(4)-720)/2 1280 720],'color','w');
         subplot(2,3,1);
-        errorbar(z(goodFit_forward),meanAngles(n,bead,goodFit_forward),stddevAngles(n,bead,goodFit_forward),'-');
+        errorbar(z(goodFit_forward),squeeze(meanAngles(n,bead,goodFit_forward)),...
+            squeeze(stddevAngles(n,bead,goodFit_forward)),'-');
         hold on
-        %     errorbar(z(goodFit_backward),meanAngles(n,bead,goodFit_backward),stddevAngles(n,bead,goodFit_backward),':');
         axis tight;
         title({dataFile ['Fiduciary ' num2str(bead)]});
         legend('forward scan'); %,'backward scan');
@@ -941,16 +945,19 @@ for n = 1:numFiles
         hold off
 
         subplot(2,3,4);
-        errorbar(z(goodFit_forward),meanInterlobeDistance(n,bead,goodFit_forward),stdInterlobeDistance(n,bead,goodFit_forward),'-');
+        errorbar(z(goodFit_forward),squeeze(meanInterlobeDistance(n,bead,goodFit_forward)),...
+            squeeze(stdInterlobeDistance(n,bead,goodFit_forward)),'-');
         axis tight;
         xlabel('z position (nm)');
         ylabel('Interlobe Distance (pix)');
         hold off;
 
         subplot(2,3,2);
-        errorbar(z(goodFit_forward),meanAmp1(n,bead,goodFit_forward),stdAmp1(n,bead,goodFit_forward),'-');
+        errorbar(z(goodFit_forward),squeeze(meanAmp1(n,bead,goodFit_forward)),...
+            squeeze(stdAmp1(n,bead,goodFit_forward)),'-');
         hold on;
-        errorbar(z(goodFit_forward),meanAmp2(n,bead,goodFit_forward),stdAmp2(n,bead,goodFit_forward),'-r');
+        errorbar(z(goodFit_forward),squeeze(meanAmp2(n,bead,goodFit_forward)),...
+            squeeze(stdAmp2(n,bead,goodFit_forward)),'-r');
         axis tight;
         legend('Lobe 1','Lobe 2');
         xlabel('z position (nm)');
@@ -958,7 +965,8 @@ for n = 1:numFiles
         hold off;
 
         subplot(2,3,5);
-        errorbar(z(goodFit_forward),meanAmpRatio(n,bead,goodFit_forward),stdAmpRatio(n,bead,goodFit_forward),'-');
+        errorbar(z(goodFit_forward),squeeze(meanAmpRatio(n,bead,goodFit_forward)),...
+            squeeze(stdAmpRatio(n,bead,goodFit_forward)),'-');
         hold on;
         axis tight;
         xlabel('z position (nm)');
@@ -966,9 +974,11 @@ for n = 1:numFiles
         hold off;
 
         subplot(2,3,3);
-        errorbar(z(goodFit_forward),meanSigma1(n,bead,goodFit_forward),stdSigma1(n,bead,goodFit_forward),'-');
+        errorbar(z(goodFit_forward),squeeze(meanSigma1(n,bead,goodFit_forward)),...
+            squeeze(stdSigma1(n,bead,goodFit_forward)),'-');
         hold on;
-        errorbar(z(goodFit_forward),meanSigma2(n,bead,goodFit_forward),stdSigma2(n,bead,goodFit_forward),'-r');
+        errorbar(z(goodFit_forward),squeeze(meanSigma2(n,bead,goodFit_forward)),...
+            squeeze(stdSigma2(n,bead,goodFit_forward)),'-r');
         axis tight;
         legend('Lobe 1','Lobe 2');
         xlabel('z position (nm)');
@@ -976,7 +986,8 @@ for n = 1:numFiles
         hold off;
 
         subplot(2,3,6);
-        errorbar(z(goodFit_forward),meanSigmaRatio(n,bead,goodFit_forward),stdSigmaRatio(n,bead,goodFit_forward),'-');
+        errorbar(z(goodFit_forward),squeeze(meanSigmaRatio(n,bead,goodFit_forward)),...
+            squeeze(stdSigmaRatio(n,bead,goodFit_forward)),'-');
         hold on;
         axis tight;
         xlabel('z position (nm)');
